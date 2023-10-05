@@ -31,6 +31,20 @@ double Test(int n)
     return t;
 }
 
+void no_omp_for_test()
+{
+    double t_avg = 0.0;
+    clock_t t2 = clock();
+    omp_set_num_threads(8);
+    for (int i = 0; i < 10; ++i) {
+        t_avg += Test(i);
+    }
+    t_avg = t_avg / 10;
+
+    clock_t t3 = clock();
+    printf("t_avg = %f, Parallel time: %ld\n", t_avg, t3 - t2);
+}
+
 void omp_for_test1()
 {
     double t_avg = 0.0;
@@ -103,7 +117,7 @@ void opm_for_pi()
 //
 
 static long num_steps = 1000000000;//越大值越精确
-const int NUM_THREADS = 8;
+#define NUM_THREADS 8
 void no_omp_pi2()
 {
     int i;
@@ -148,7 +162,8 @@ void omp_for_pi2_2()
 {
     int i;
     int id;
-    double pi = 0.0, sum[NUM_THREADS] = { 0.0 };
+    double pi = 0.0;
+    double sum[NUM_THREADS] = { 0.0 };
     double step = 1.0 / (double)num_steps;
     omp_set_num_threads(NUM_THREADS);  //设置2线程
     clock_t t2 = clock();
@@ -238,15 +253,15 @@ void omp_sleep()
 int main(int argc, char* argv[])
 {
     //omp_thread_test();
+    //no_omp_for_test();
     //omp_for_test1();
     //omp_for_test2();
-    //no_opm_pi();
-    //opm_for_pi();
-    //no_omp_pi2();
-    //omp_for_pi2_1();
-    //omp_for_pi2_2();
-    //omp_for_pi2_3();
-    //omp_for_pi2_4();
-    omp_sleep();
-    system("pause");
+    no_opm_pi();
+    opm_for_pi();
+    no_omp_pi2();
+    omp_for_pi2_1();
+    omp_for_pi2_2();
+    omp_for_pi2_3();
+    omp_for_pi2_4();
+    //omp_sleep();
 }
