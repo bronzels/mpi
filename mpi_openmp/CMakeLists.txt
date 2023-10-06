@@ -19,9 +19,14 @@ link_libraries(${MPI_LIBRARIES})
 #
 
 add_executable(matmul ../mpi_openmp/matmul.cpp ${COMMON_CPP})
+add_executable(splitab_orig ../mpi_openmp/splitab_orig.cpp ${COMMON_CPP})
 
 #set(EXECUTABLE_OUTPUT_PATH, "/data0/nfs/mpi")
 add_custom_command(
         TARGET matmul POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy matmul /data0/nfs/mpi
+)
+add_custom_command(
+        TARGET splitab_orig POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy splitab_orig /data0/nfs/mpi
 )
