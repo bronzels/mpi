@@ -11,7 +11,3 @@ set(CMAKE_CXX_COMPILER mpicxx)
 set(CMAKE_C_COMPILER  mpicc)
 #
 
-add_executable(hello hello.c)
-add_executable(pi pi.c)
-
-#set(EXECUTABLE_OUTPUT_PATH, "/data0/nfs/mpi")

@@ -5,3 +5,5 @@ set(CMAKE_CXX_STANDARD 11)
 
 ADD_SUBDIRECTORY(./mpi)
 ADD_SUBDIRECTORY(./openmp)
+ADD_SUBDIRECTORY(./mpi_openmp)
+ADD_SUBDIRECTORY(./heterogeneous)
